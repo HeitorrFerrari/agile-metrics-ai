@@ -1,4 +1,4 @@
-"""Small wrapper over the Anthropic Messages API."""
+"""Pequeno wrapper sobre a Messages API da Anthropic."""
 
 from __future__ import annotations
 
@@ -7,7 +7,7 @@ import anthropic
 
 class LLMClient:
     def __init__(self, api_key: str, model: str = "claude-opus-5") -> None:
-        # An empty api_key lets the SDK fall back to ANTHROPIC_API_KEY / a profile.
+        # api_key vazio deixa o SDK cair no ANTHROPIC_API_KEY / num profile.
         self._client = anthropic.Anthropic(api_key=api_key or None)
         self.model = model
 

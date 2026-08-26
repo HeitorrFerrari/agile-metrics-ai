@@ -1,1 +1,1 @@
-"""Narrative layer — the only place an LLM is used. Metrics stay deterministic."""
+"""Camada de narrativa — único lugar onde um LLM é usado. As métricas continuam determinísticas."""

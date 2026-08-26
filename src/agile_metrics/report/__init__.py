@@ -1,1 +1,1 @@
-"""Turn metrics + findings into a report (markdown / terminal / Claude summary)."""
+"""Transforma métricas + findings num relatório (markdown / terminal / resumo do Claude)."""

@@ -1,4 +1,4 @@
-"""Render metrics + findings as markdown."""
+"""Renderiza métricas + findings como markdown."""
 
 from __future__ import annotations
 
@@ -18,25 +18,25 @@ def render_markdown(
     findings: list[Finding],
     narrative: str | None = None,
 ) -> str:
-    lines = [f"# Kanban health - {board_name}", ""]
+    lines = [f"# Saúde do Kanban - {board_name}", ""]
 
-    lines.append("## Flow metrics")
+    lines.append("## Métricas de fluxo")
     for pct, value in cycle_time_pcts.items():
         lines.append(f"- Cycle time p{pct}: {_days(value)}")
     lines.append("")
 
-    lines.append("## Current WIP")
+    lines.append("## WIP atual")
     for column, count in wip.items():
         lines.append(f"- {column}: {count}")
     lines.append("")
 
     lines.append("## Findings")
     if not findings:
-        lines.append("- none")
+        lines.append("- nenhum")
     for f in findings:
         lines.append(f"- **[{f.severity.value.upper()}] {f.title}** - {f.detail}")
 
     if narrative:
-        lines += ["", "## Coaching summary", "", narrative]
+        lines += ["", "## Resumo de coaching", "", narrative]
 
     return "\n".join(lines)
