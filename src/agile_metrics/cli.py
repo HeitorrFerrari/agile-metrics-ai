@@ -1,4 +1,4 @@
-"""Command-line entry point."""
+"""Ponto de entrada da linha de comando."""
 
 from __future__ import annotations
 
@@ -16,12 +16,12 @@ from agile_metrics.connectors.azure.mapping import BoardConfig
 from agile_metrics.metrics import flow
 from agile_metrics.report.render import render_markdown
 
-app = typer.Typer(help="Analyze an agile board and assess Kanban health.")
+app = typer.Typer(help="Analisa o quadro de uma metodologia ágil e avalia a saúde do Kanban.")
 
 
 @app.command()
-def analyze(narrative: bool = typer.Option(False, help="Add an LLM coaching summary.")) -> None:
-    """Fetch the board, compute metrics, run the rules, print a report."""
+def analyze(narrative: bool = typer.Option(False, help="Adiciona um resumo de coaching via LLM.")) -> None:
+    """Busca o quadro, calcula as métricas, roda as regras e imprime um relatório."""
     settings = load_settings()
     config = BoardConfig.load(settings.board_config_path)
 
@@ -56,8 +56,8 @@ def analyze(narrative: bool = typer.Option(False, help="Add an LLM coaching summ
 
 @app.command()
 def snapshot() -> None:
-    """Save today's board state to data/snapshots/ to build history over time."""
-    raise typer.Exit("TODO: implement daily snapshot capture")
+    """Salva o estado do quadro de hoje em data/snapshots/ para construir histórico ao longo do tempo."""
+    raise typer.Exit("TODO: implementar a captura diária de snapshot")
 
 
 if __name__ == "__main__":

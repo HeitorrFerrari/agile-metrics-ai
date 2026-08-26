@@ -1,4 +1,4 @@
-"""Core flow metrics: cycle time, throughput, WIP."""
+"""Métricas de fluxo core: cycle time, throughput, WIP."""
 
 from __future__ import annotations
 
@@ -28,7 +28,7 @@ def completed_cards(board: Board) -> list[Card]:
 def cycle_time_percentiles(
     board: Board, pcts: tuple[int, ...] = (50, 85, 95)
 ) -> dict[int, float]:
-    """Cycle-time percentiles in hours over all completed cards."""
+    """Percentis de cycle time em horas, sobre todos os cards concluídos."""
     values = [
         ct
         for c in completed_cards(board)
@@ -41,7 +41,7 @@ def cycle_time_percentiles(
 
 
 def throughput_weekly(board: Board) -> pd.Series:
-    """Count of cards finished per ISO week."""
+    """Quantidade de cards finalizados por semana ISO."""
     dates = [c.entered(board.done_column) for c in completed_cards(board)]
     if not dates:
         return pd.Series(dtype="int64")
@@ -50,7 +50,7 @@ def throughput_weekly(board: Board) -> pd.Series:
 
 
 def current_wip(board: Board) -> dict[str, int]:
-    """Cards currently sitting in each non-done column."""
+    """Cards que estão agora em cada coluna que não é de conclusão."""
     counts = {c.name: 0 for c in board.columns}
     for card in board.cards:
         col = card.current_column()

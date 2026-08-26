@@ -1,7 +1,7 @@
-"""Thin wrapper over the Azure DevOps REST + Analytics APIs.
+"""Wrapper fino sobre as APIs REST + Analytics do Azure DevOps.
 
-Auth: a personal access token (PAT) with at least `Work Items (Read)` and
-`Analytics (Read)`. The PAT is sent as HTTP basic auth with an empty username.
+Auth: um personal access token (PAT) com pelo menos `Work Items (Read)` e
+`Analytics (Read)`. O PAT é enviado como HTTP basic auth com usuário vazio.
 """
 
 from __future__ import annotations
@@ -38,26 +38,26 @@ class AzureDevOpsClient:
     # --- REST -------------------------------------------------------------
 
     def query_wiql(self, wiql: str) -> list[int]:
-        """Run a WIQL query, return the matching work item ids."""
+        """Roda uma consulta WIQL e retorna os ids dos work items correspondentes."""
         # TODO: POST /{project}/_apis/wit/wiql?api-version=REST_API_VERSION
         #       body: {"query": wiql}  -> response["workItems"][*]["id"]
         raise NotImplementedError
 
     def work_item_updates(self, work_item_id: int) -> list[dict[str, Any]]:
-        """Field-level revision history for one work item (incl. state / column changes)."""
+        """Histórico de revisões de um work item (inclui mudanças de state / coluna)."""
         # TODO: GET /{project}/_apis/wit/workItems/{id}/updates?api-version=REST_API_VERSION
-        #       paginate on $top / $skip
+        #       paginar com $top / $skip
         raise NotImplementedError
 
     def board_columns(self, board: str) -> list[dict[str, Any]]:
-        """Board column definitions, including WIP limits."""
+        """Definições das colunas do quadro, incluindo os limites de WIP."""
         # TODO: GET /{project}/{team}/_apis/work/boards/{board}/columns?api-version=REST_API_VERSION
         raise NotImplementedError
 
-    # --- Analytics (OData, historical snapshots) -------------------------
+    # --- Analytics (OData, snapshots históricos) -------------------------
 
     def board_snapshots(self, since_iso: str) -> list[dict[str, Any]]:
-        """Daily WorkItemBoardSnapshot rows since `since_iso` — best source of history."""
+        """Linhas diárias de WorkItemBoardSnapshot desde `since_iso` — melhor fonte de histórico."""
         # TODO: GET /_odata/{ANALYTICS_API_VERSION}/WorkItemBoardSnapshot
         #       ?$filter=DateValue ge {since_iso}
         #       &$select=WorkItemId,DateValue,BoardColumn,State,ColumnPosition

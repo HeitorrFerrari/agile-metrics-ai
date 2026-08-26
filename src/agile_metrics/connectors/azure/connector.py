@@ -1,4 +1,4 @@
-"""Azure DevOps -> normalized Board."""
+"""Azure DevOps -> Board normalizado."""
 
 from __future__ import annotations
 
@@ -17,15 +17,15 @@ class AzureConnector(Connector):
 
     def fetch_board(self, since: datetime) -> Board:
         """
-        MVP plan:
-          1. WIQL: work items on the board changed since `since`, plus everything
-             still open.
-          2. For each work item: work_item_updates() -> read System.BoardColumn /
-             System.State changes -> build list[Transition].
-          3. Cross-check / backfill with board_snapshots() for history the updates
-             feed does not cover reliably.
-          4. Map every state name to a normalized Column via self.config.
-          5. Build Board(columns=self.config.columns, cards=[...], ...).
+        Plano do MVP:
+          1. WIQL: work items do quadro alterados desde `since`, mais tudo que
+             ainda está aberto.
+          2. Para cada work item: work_item_updates() -> ler mudanças de
+             System.BoardColumn / System.State -> montar list[Transition].
+          3. Cruzar / preencher com board_snapshots() para o histórico que o
+             feed de updates não cobre de forma confiável.
+          4. Mapear cada nome de state para uma Column normalizada via self.config.
+          5. Montar Board(columns=self.config.columns, cards=[...], ...).
         """
-        # TODO: implement the steps above.
+        # TODO: implementar os passos acima.
         raise NotImplementedError

@@ -1,4 +1,4 @@
-"""Runtime configuration, loaded from environment / .env."""
+"""Configuração de execução, carregada do ambiente / .env."""
 
 from __future__ import annotations
 

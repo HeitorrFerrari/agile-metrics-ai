@@ -1,4 +1,4 @@
-"""Aging WIP — cards that have sat in a column longer than they should."""
+"""Aging WIP — cards parados numa coluna por mais tempo do que deveriam."""
 
 from __future__ import annotations
 
@@ -20,9 +20,9 @@ class AgingItem(BaseModel):
 def aging_wip(
     board: Board, threshold_hours_by_column: dict[str, float]
 ) -> list[AgingItem]:
-    """Cards older in their current column than the given threshold.
+    """Cards mais velhos na coluna atual do que o limiar informado.
 
-    A useful threshold is the overall cycle-time p85 (or a per-column budget).
+    Um limiar útil é o p85 geral do cycle time (ou um orçamento por coluna).
     """
     now = datetime.now(timezone.utc)
     done = board.done_column_names()

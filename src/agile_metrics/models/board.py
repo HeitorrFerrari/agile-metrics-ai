@@ -1,9 +1,9 @@
-"""The normalized board model.
+"""O modelo normalizado do quadro.
 
-Every connector maps its source tool onto these types, so the metrics and
-analysis layers never touch a provider-specific payload.
+Todo conector mapeia a ferramenta de origem para estes tipos, então as camadas
+de métricas e análise nunca tocam num payload específico de um provedor.
 
-All datetimes are timezone-aware UTC.
+Todos os datetimes são timezone-aware em UTC.
 """
 
 from __future__ import annotations
@@ -19,9 +19,9 @@ def _now() -> datetime:
 
 
 class ColumnType(str, Enum):
-    QUEUE = "queue"    # waiting, nobody working it -> wait time
-    ACTIVE = "active"  # actively being worked -> touch time
-    DONE = "done"      # left the system
+    QUEUE = "queue"    # esperando, ninguém trabalhando -> tempo de espera
+    ACTIVE = "active"  # sendo trabalhado ativamente -> tempo de toque
+    DONE = "done"      # saiu do sistema
 
 
 class Column(BaseModel):
@@ -32,7 +32,7 @@ class Column(BaseModel):
 
 
 class Transition(BaseModel):
-    """A single move of a card from one column to another."""
+    """Um único movimento de um card de uma coluna para outra."""
 
     card_id: str
     from_column: str | None
@@ -43,7 +43,7 @@ class Transition(BaseModel):
 class Card(BaseModel):
     id: str
     title: str = ""
-    card_type: str = ""  # e.g. "User Story", "Bug"
+    card_type: str = ""  # ex.: "User Story", "Bug"
     created_at: datetime
     closed_at: datetime | None = None
     blocked: bool = False
@@ -57,14 +57,14 @@ class Card(BaseModel):
         return ts[-1].to_column if ts else None
 
     def entered(self, column: str) -> datetime | None:
-        """First time the card entered `column`, or None if it never did."""
+        """Primeira vez que o card entrou em `column`, ou None se nunca entrou."""
         for t in self.sorted_transitions():
             if t.to_column == column:
                 return t.at
         return None
 
     def time_in_column_hours(self, column: str, now: datetime | None = None) -> float:
-        """Total hours spent in `column` (open-ended if the card is still there)."""
+        """Total de horas passadas em `column` (aberto se o card ainda está lá)."""
         now = now or _now()
         total = 0.0
         entered_at: datetime | None = None

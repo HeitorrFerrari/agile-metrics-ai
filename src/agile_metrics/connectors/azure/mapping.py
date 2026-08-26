@@ -1,4 +1,4 @@
-"""User-provided board semantics (board_config.yaml) -> normalized columns."""
+"""Semântica do quadro fornecida pelo usuário (board_config.yaml) -> colunas normalizadas."""
 
 from __future__ import annotations
 
@@ -38,5 +38,5 @@ class BoardConfig(BaseModel):
         )
 
     def column_for_state(self, state: str) -> Column | None:
-        """Resolve an Azure board column / state name to a normalized column."""
+        """Resolve um nome de coluna / state do Azure para uma coluna normalizada."""
         return next((c for c in self.columns if c.name == state), None)
