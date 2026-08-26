@@ -6,7 +6,7 @@ from agile_metrics.models import Board
 
 def test_cycle_time_percentiles(sample_board: Board) -> None:
     pcts = flow.cycle_time_percentiles(sample_board, pcts=(50,))
-    assert pcts[50] == 72.0  # card 1: Active -> Closed = 3 days
+    assert pcts[50] == 72.0  # card 1: Active -> Closed = 3 dias
 
 
 def test_current_wip(sample_board: Board) -> None:
@@ -23,7 +23,7 @@ def test_wip_limit_not_exceeded(sample_board: Board) -> None:
 
 
 def test_no_wip_limits_flags_missing(sample_board: Board) -> None:
-    # "Active" has a limit, so no finding is expected here.
+    # "Active" tem limite, então nenhum finding é esperado aqui.
     ctx = AnalysisContext(
         board=sample_board, cycle_time_pcts={}, current_wip=flow.current_wip(sample_board)
     )

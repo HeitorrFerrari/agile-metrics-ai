@@ -1,13 +1,13 @@
-# Copy to board_config.yaml and adjust to your team's board.
+# Copie para board_config.yaml e ajuste ao quadro do seu time.
 #
-# The metrics engine only understands these normalized column types:
-#   queue  -> item is waiting, nobody is working it  (counts as wait time)
-#   active -> item is actively being worked          (counts as touch time)
-#   done   -> item has left the system
+# A engine de métricas só entende estes tipos de coluna normalizados:
+#   queue  -> item esperando, ninguém trabalhando nele  (conta como tempo de espera)
+#   active -> item sendo trabalhado ativamente           (conta como tempo de toque)
+#   done   -> item saiu do sistema
 #
-# `name` must match the Azure DevOps board column / state name exactly.
+# `name` precisa bater exatamente com o nome da coluna / state do quadro no Azure DevOps.
 
-name: "Team X - Development Board"
+name: "Time X - Quadro de Desenvolvimento"
 
 columns:
   - name: "New"
@@ -29,10 +29,10 @@ columns:
     type: done
     wip_limit: null
 
-# Cycle time is measured from the first time a card enters `start_column`
-# until the first time it enters `done_column`.
+# O cycle time é medido da primeira vez que um card entra em `start_column`
+# até a primeira vez que ele entra em `done_column`.
 start_column: "Active"
 done_column: "Closed"
 
-# How many days of history to pull on a full analysis run.
+# Quantos dias de histórico puxar numa execução de análise completa.
 history_days: 90

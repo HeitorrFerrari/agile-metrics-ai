@@ -9,4 +9,4 @@ def test_current_column(sample_board: Board) -> None:
 
 def test_time_in_column_hours(sample_board: Board) -> None:
     card = next(c for c in sample_board.cards if c.id == "1")
-    assert round(card.time_in_column_hours("Active")) == 72  # 3 days
+    assert round(card.time_in_column_hours("Active")) == 72  # 3 dias
