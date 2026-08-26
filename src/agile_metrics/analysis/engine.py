@@ -15,6 +15,7 @@ class AnalysisContext(BaseModel):
 
     model_config = ConfigDict(arbitrary_types_allowed=True)
 
+
     board: Board
     cycle_time_pcts: dict[int, float]
     current_wip: dict[str, int]

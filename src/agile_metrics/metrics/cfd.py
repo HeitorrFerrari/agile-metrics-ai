@@ -1,4 +1,4 @@
-"""Cumulative Flow Diagram data."""
+"""Dados do Cumulative Flow Diagram (CFD)."""
 
 from __future__ import annotations
 
@@ -8,15 +8,15 @@ from agile_metrics.models import Board
 
 
 def cumulative_flow(board: Board, freq: str = "D") -> pd.DataFrame:
-    """Build a cumulative flow table.
+    """Monta a tabela de fluxo cumulativo.
 
-    index  = date (at `freq` resolution)
-    column = board column
-    value  = number of cards in that column or a later one on that date
+    índice = data (na resolução de `freq`)
+    coluna = coluna do quadro
+    valor  = número de cards naquela coluna ou numa posterior naquela data
 
-    Derived by replaying every card's transitions onto a timeline.
-    Widening bands = growing WIP / a bottleneck downstream.
+    Derivado reproduzindo as transições de cada card numa linha do tempo.
+    Faixas alargando = WIP crescendo / gargalo mais adiante.
     """
-    # TODO: replay transitions per card, forward-fill state per day,
-    #       pivot to a date x column matrix, then cumulate from the right.
+    # TODO: reproduzir as transições por card, forward-fill do estado por dia,
+    #       pivotar para uma matriz data x coluna e acumular da direita p/ esquerda.
     raise NotImplementedError

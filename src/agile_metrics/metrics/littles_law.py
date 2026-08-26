@@ -1,8 +1,8 @@
-"""Little's Law sanity check.
+"""Sanity check da Lei de Little.
 
-For a stable system: average cycle time ~= average WIP / throughput.
-A large deviation means the board is not in a steady state (arrival rate and
-departure rate are out of balance).
+Para um sistema estável: cycle time médio ~= WIP médio / throughput.
+Um desvio grande significa que o quadro não está em regime estável (a taxa de
+chegada e a taxa de saída estão desbalanceadas).
 """
 
 from __future__ import annotations
@@ -15,7 +15,7 @@ class LittlesLawResult(BaseModel):
     weekly_throughput: float
     observed_cycle_time_days: float
     predicted_cycle_time_days: float
-    deviation_ratio: float  # observed / predicted
+    deviation_ratio: float  # observado / previsto
 
     @property
     def stable(self) -> bool:

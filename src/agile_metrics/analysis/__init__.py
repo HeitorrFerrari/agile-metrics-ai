@@ -1,1 +1,1 @@
-"""Deterministic rules that turn metrics into ranked findings."""
+"""Regras determinísticas que transformam métricas em findings ranqueados."""
