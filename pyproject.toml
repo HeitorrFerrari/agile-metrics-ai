@@ -1,0 +1,43 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "agile-metrics-ai"
+version = "0.1.0"
+description = "Pull an agile board (Azure DevOps first) and assess how well Kanban is actually being applied."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "httpx>=0.27",
+    "pydantic>=2.7",
+    "pydantic-settings>=2.3",
+    "pandas>=2.2",
+    "pyyaml>=6.0",
+    "typer>=0.12",
+    "rich>=13.7",
+    "anthropic>=0.40",
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8",
+    "pytest-asyncio>=0.23",
+    "ruff>=0.5",
+    "mypy>=1.10",
+]
+
+[project.scripts]
+agile-metrics = "agile_metrics.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/agile_metrics"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]

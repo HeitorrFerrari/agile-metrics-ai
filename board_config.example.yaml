@@ -1,0 +1,38 @@
+# Copy to board_config.yaml and adjust to your team's board.
+#
+# The metrics engine only understands these normalized column types:
+#   queue  -> item is waiting, nobody is working it  (counts as wait time)
+#   active -> item is actively being worked          (counts as touch time)
+#   done   -> item has left the system
+#
+# `name` must match the Azure DevOps board column / state name exactly.
+
+name: "Team X - Development Board"
+
+columns:
+  - name: "New"
+    type: queue
+    wip_limit: null
+  - name: "Active"
+    type: active
+    wip_limit: 3
+  - name: "Code Review"
+    type: active
+    wip_limit: 2
+  - name: "Ready for Test"
+    type: queue
+    wip_limit: null
+  - name: "Testing"
+    type: active
+    wip_limit: 2
+  - name: "Closed"
+    type: done
+    wip_limit: null
+
+# Cycle time is measured from the first time a card enters `start_column`
+# until the first time it enters `done_column`.
+start_column: "Active"
+done_column: "Closed"
+
+# How many days of history to pull on a full analysis run.
+history_days: 90
