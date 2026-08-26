@@ -1,6 +1,6 @@
 # agile-metrics-ai
 
-Puxa o quadro de uma metodologia ágil (Azure DevOps primeiro) e avalia **o quão bem o Kanban está sendo aplicado de verdade** — não só os gráficos de sempre, mas um diagnóstico opinativo com recomendações.
+Puxa o quadro de uma metodologia ágil essa metodologia está sendo aplicado de verdade** — não só os gráficos de sempre, mas um diagnóstico opinativo com recomendações.
 
 ## Como funciona
 
