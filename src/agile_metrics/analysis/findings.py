@@ -17,4 +17,6 @@ class Finding(BaseModel):
     severity: Severity
     title: str
     detail: str
-    evidence: dict = Field(default_factory=dict)  # numbers / card ids backing the claim
+    evidence: dict = Field(default_factory=dict)  # números / ids de card que sustentam a afirmação
+
+

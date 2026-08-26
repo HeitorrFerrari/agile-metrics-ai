@@ -1,8 +1,8 @@
-"""Rule definitions.
+"""Definições das regras.
 
-A rule reads the AnalysisContext and returns zero or more Findings. Keep every
-claim backed by a number in `evidence` — the narrative layer is not allowed to
-invent them.
+Uma regra lê o AnalysisContext e retorna zero ou mais Findings. Mantenha toda
+afirmação sustentada por um número em `evidence` — a camada de narrativa não
+tem permissão para inventar números.
 """
 
 from __future__ import annotations
@@ -32,10 +32,10 @@ class NoWipLimitsRule:
             Finding(
                 rule_id=self.id,
                 severity=Severity.HIGH,
-                title="Active columns have no WIP limit",
+                title="Colunas ativas sem limite de WIP",
                 detail=(
-                    "Limiting work in progress is Kanban's core mechanic. "
-                    f"These active columns have no limit: {', '.join(missing)}."
+                    "Limitar o trabalho em progresso é o mecanismo central do Kanban. "
+                    f"Estas colunas ativas não têm limite: {', '.join(missing)}."
                 ),
                 evidence={"columns": missing},
             )
@@ -56,8 +56,8 @@ class WipLimitExceededRule:
                     Finding(
                         rule_id=self.id,
                         severity=Severity.MEDIUM,
-                        title=f"WIP limit exceeded in '{col.name}'",
-                        detail=f"{count} cards in the column vs a limit of {col.wip_limit}.",
+                        title=f"Limite de WIP estourado em '{col.name}'",
+                        detail=f"{count} cards na coluna contra um limite de {col.wip_limit}.",
                         evidence={
                             "column": col.name,
                             "count": count,
@@ -72,7 +72,7 @@ class AgingWipRule:
     id = "aging-wip"
 
     def evaluate(self, ctx: AnalysisContext) -> list[Finding]:
-        # TODO: read ctx.extras["aging_items"] produced by metrics.aging.aging_wip
+        # TODO: ler ctx.extras["aging_items"] produzido por metrics.aging.aging_wip
         return []
 
 
@@ -80,8 +80,8 @@ class BackwardMovementRule:
     id = "backward-movement"
 
     def evaluate(self, ctx: AnalysisContext) -> list[Finding]:
-        # TODO: count transitions where the destination column's order is lower
-        #       than the source column's order (rework / failed hand-offs)
+        # TODO: contar transições em que a `order` da coluna de destino é menor
+        #       que a da coluna de origem (retrabalho / hand-offs que falharam)
         return []
 
 
