@@ -21,3 +21,8 @@ def register(provider: Provider) -> Callable[[ConnectorBuilder], Connector]:
         _BUILDERS[provider] = fn
         return fn
     return deco
+
+def build_connector(provider: Provider, settings: Settings, config: BoardConfig) -> Connector:
+    if provider not in _BUILDERS:
+        raise ValueError(f"Sem conector registrado pro provider: {provider}")
+    return _BUILDERS[provider](settings, config)
