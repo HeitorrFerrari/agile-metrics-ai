@@ -15,3 +15,9 @@ class Provider(str, Enum):
 
 ConnectorBuilder = Callable[[Settings, BoardConfig], Connector]
 _BUILDERS: dict[Provider, ConnectorBuilder] = {}
+
+def register(provider: Provider) -> Callable[[ConnectorBuilder], Connector]:
+    def deco(fn: ConnectorBuilder) -> ConnectorBuilder:
+        _BUILDERS[provider] = fn
+        return fn
+    return deco
